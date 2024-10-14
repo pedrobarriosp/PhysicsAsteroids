@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://hbdscahwtv1"]
+
+[ext_resource type="Script" path="res://Asteroids/asteroid_small.gd" id="1_j10n6"]
+[ext_resource type="Texture2D" uid="uid://djm3odw4tfe4o" path="res://Sprites/meteor_detailedSmall.png" id="1_yfcya"]
+[ext_resource type="AudioStream" uid="uid://du6yau4hs7jli" path="res://Sounds/impactMetal_003.ogg" id="3_tddoy"]
+
+[node name="AsteroidSmall" type="RigidBody2D" groups=["asteroids"]]
+mass = 0.3
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+angular_damp = -1.0
+script = ExtResource("1_j10n6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_yfcya")
+
+[node name="CollisionArea" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -24, 18, -18, 24, -1, 18, 18, 0, 24, -18, 18, -24, 0, -18, -18)
+
+[node name="OnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(2.4, 2.4)
+
+[node name="Width" type="Marker2D" parent="."]
+position = Vector2(24, 0)
+
+[node name="Height" type="Marker2D" parent="."]
+position = Vector2(0, 24)
+
+[node name="ImpactSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_tddoy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="OnScreenNotifier" to="." method="on_screen_notifier_screen_exited"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://d06w1uycm0ahq"]
+
+[ext_resource type="Script" path="res://Player/player_bullet.gd" id="1_7v0ol"]
+[ext_resource type="Texture2D" uid="uid://bhivcbd1enwxp" path="res://Sprites/star_tiny.png" id="1_17b52"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47o7l"]
+size = Vector2(5.65685, 5.65686)
+
+[node name="PlayerBullet" type="RigidBody2D" groups=["bullets"]]
+mass = 0.1
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_7v0ol")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_47o7l")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.4, 0.4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_17b52")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,386 @@
+[gd_scene load_steps=10 format=3 uid="uid://cy1wwbj41pvk5"]
+
+[ext_resource type="Script" path="res://game_view.gd" id="1_a7emo"]
+[ext_resource type="PackedScene" uid="uid://c2atbk5qfecb1" path="res://Player/Player.tscn" id="1_tbdva"]
+[ext_resource type="FontFile" uid="uid://bxoe526y4bp2r" path="res://Fonts/Kenney Future.ttf" id="3_2rw82"]
+[ext_resource type="PackedScene" uid="uid://p0wt8k4nqdwi" path="res://Asteroids/Asteroid_Large.tscn" id="3_kdj8p"]
+[ext_resource type="Texture2D" uid="uid://cxr44fmrdynje" path="res://UI/keyboard_arrows_horizontal.png" id="4_jn2hw"]
+[ext_resource type="Texture2D" uid="uid://cxqxl4xw4dv07" path="res://UI/keyboard_x.png" id="5_yty0b"]
+[ext_resource type="Texture2D" uid="uid://dnl06ffs33icq" path="res://UI/keyboard_z.png" id="6_tkjq2"]
+[ext_resource type="Texture2D" uid="uid://dro8bli67tln7" path="res://UI/keyboard_arrows_up.png" id="7_nv70q"]
+
+[sub_resource type="Curve2D" id="Curve2D_exap8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="GameView" type="Node"]
+script = ExtResource("1_a7emo")
+asteroidLarge = ExtResource("3_kdj8p")
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1112.0
+offset_bottom = -608.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.8
+anchor_bottom = 16.2
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0430392, 0.0430392, 0.0430392, 1)
+metadata/_edit_lock_ = true
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -196.0
+offset_right = 448.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 32
+text = "Play game"
+
+[node name="QuitButton" type="Button" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 96.0
+offset_right = 128.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 32
+text = "exit program"
+
+[node name="Title" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -136.0
+offset_right = 576.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 60
+text = "Physics Asteroids"
+horizontal_alignment = 1
+
+[node name="Title2" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = 264.0
+offset_right = 359.0
+offset_bottom = 332.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 20
+text = "Credits: Assets: www.kenney.nl / Author: Peter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Controls" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -488.0
+offset_top = 192.0
+offset_right = -232.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 30
+text = "Controls:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Controls2" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = 188.0
+offset_right = -47.0
+offset_bottom = 244.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 20
+text = "Move Forward"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="Controls3" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 27.0
+offset_top = 187.0
+offset_right = 190.0
+offset_bottom = 243.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 20
+text = "Rotate left / right"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="Controls4" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 319.0
+offset_top = 182.0
+offset_right = 420.0
+offset_bottom = 238.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 20
+text = "Shoot"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="KeyboardArrowsHorizontal" type="Sprite2D" parent="Menu"]
+position = Vector2(440, 408)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("4_jn2hw")
+
+[node name="KeyboardX" type="Sprite2D" parent="Menu"]
+position = Vector2(731, 403)
+texture = ExtResource("5_yty0b")
+
+[node name="KeyboardZ" type="Sprite2D" parent="Menu"]
+position = Vector2(679, 403)
+texture = ExtResource("6_tkjq2")
+
+[node name="KeyboardArrowsUp" type="Sprite2D" parent="Menu"]
+position = Vector2(232, 408)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("7_nv70q")
+
+[node name="UI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_right = 166.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 40
+text = "Score:"
+
+[node name="Score" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 184.0
+offset_right = 217.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="LivesLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 166.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 40
+text = "Lives:"
+
+[node name="Lives" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 48.0
+offset_right = 288.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 40
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Message" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -76.0
+offset_right = 168.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 50
+text = "Game Over"
+
+[node name="FinalScoreLabel" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -4.0
+offset_right = 49.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 50
+text = "Score:"
+
+[node name="FinalScore" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 56.0
+offset_top = -4.0
+offset_right = 264.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 50
+text = "0
+"
+
+[node name="MenuButton" type="Button" parent="GameOver"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 400.0
+offset_right = 677.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 32
+text = "Main Menu"
+
+[node name="Player" parent="." instance=ExtResource("1_tbdva")]
+visible = false
+position = Vector2(576, 320)
+
+[node name="AsteroidPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_exap8")
+
+[node name="AsteroidSpawn" type="PathFollow2D" parent="AsteroidPath"]
+
+[node name="AsteroidTimer" type="Timer" parent="."]
+
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(576, 320)
+
+[node name="GameStartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="GameStartTimerLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -92.0
+offset_right = 112.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_2rw82")
+theme_override_font_sizes/font_size = 40
+text = "Ready...
+"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[connection signal="gameOver" from="." to="Player" method="_on_game_over"]
+[connection signal="gameStart" from="." to="Player" method="_on_game_view_game_start"]
+[connection signal="pressed" from="Menu/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Menu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="GameOver/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="playerHit" from="Player" to="." method="_on_player_player_hit"]
+[connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
+[connection signal="timeout" from="GameStartTimer" to="." method="_on_game_start_timer_timeout"]

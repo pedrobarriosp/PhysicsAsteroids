@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2atbk5qfecb1"]
+
+[ext_resource type="Texture2D" uid="uid://dm7g1v1pof8e2" path="res://Sprites/ship_sidesA.png" id="1_1ix52"]
+[ext_resource type="Script" path="res://Player/player.gd" id="1_g1gq1"]
+[ext_resource type="AudioStream" uid="uid://ngvgtnxsmkhc" path="res://Sounds/forceField_003.ogg" id="4_xee6y"]
+[ext_resource type="AudioStream" uid="uid://crrq5ebcuwbim" path="res://Sounds/thrusterFire_000.ogg" id="5_00axm"]
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_g1gq1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_1ix52")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, -32)
+
+[node name="OnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1.01328e-06, 3)
+scale = Vector2(2.1, 2.7)
+
+[node name="Height" type="Marker2D" parent="."]
+position = Vector2(0, 28)
+
+[node name="Width" type="Marker2D" parent="."]
+position = Vector2(19, 0)
+
+[node name="PlayerArea" type="Area2D" parent="."]
+input_pickable = false
+
+[node name="Collision" type="CollisionPolygon2D" parent="PlayerArea"]
+polygon = PackedVector2Array(9, 31, 19, 25, 22, 13, 17, 3, 8, -9, 0, -25, -7, -9, -16, 2, -22, 12, -19, 24, -9, 31, 0, 25)
+metadata/_edit_lock_ = true
+
+[node name="PhysicsCollision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(9, 31, 19, 25, 22, 13, 17, 3, 8, -9, 0, -25, -7, -9, -16, 2, -22, 12, -19, 24, -9, 31, 0, 25)
+metadata/_edit_lock_ = true
+
+[node name="Thruster" type="Marker2D" parent="."]
+position = Vector2(0, 24)
+
+[node name="ThrusterTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="ShieldSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xee6y")
+
+[node name="ThrusterSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_00axm")
+volume_db = -5.0
+
+[connection signal="screen_exited" from="OnScreenNotifier" to="." method="_on_screen_notifier_screen_exited"]
+[connection signal="body_entered" from="PlayerArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="ThrusterTimer" to="." method="_on_thruster_timer_timeout"]
